@@ -8,6 +8,10 @@ app = flask.Flask(
 )
 
 
+@app.route('/files/<path:path>')
+def send_file(path):
+    return flask.send_from_directory('files', path)
+
 @app.route("/channel/<name>/")
 def channel_name(name):
     messages = flask._app_ctx_stack.channels[name]
